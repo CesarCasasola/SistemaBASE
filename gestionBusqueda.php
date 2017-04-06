@@ -1,9 +1,11 @@
 <?php
 ////////////////// CONEXION A LA BASE DE DATOS //////////////////
- $dbserver = 'localhost';
- $dbuser = 'root';
- $password = '';
- $dbname = 'admaptec_jmln2';
+$dbserver = 'localhost';
+$dbuser = 'root';
+$password = '';
+$dbname = 'admaptec_jmln2';
+
+
 
  $database = new mysqli($dbserver, $dbuser, $password, $dbname);
 
@@ -65,7 +67,7 @@
   	   	</nav>
 		<header>
 			<div class="alert alert-info text-center">
-			<h2>GESTION DE CURSOS</h2>
+			<h2>BÚSQUEDA ALUMNOS-CURSO</h2>
 			</div>
 		</header>
 
@@ -152,7 +154,7 @@
     . "AND `sig`.`IDCATEDRATICO` = `da`.`idcatedratico`\n"
     . "AND `us`.`ACTIVO` = 1";
                 $queryCte21= $database->query($query3);
-                $btnasignacion='<button class="btn  btn-success btn-block" name="insertar" value="asignar"> Asignaciones </button>';
+                $btnasignacion='<button class="btn  btn-success btn-block" name="insertar" value="asignar"><span class="glyphicon glyphicon-pencil"></span> ASIGNAR </button>';
                 if(!isset($_POST['nombres']) || $_POST['nombres']==""){
 
                 }else{
@@ -166,7 +168,7 @@
     . "AND ( UPPER(`us`.`nombre`) LIKE UPPER('%".$_POST['nombres']."%') \n"
     . "OR UPPER(`us`.`apellidos`) LIKE UPPER('%".$_POST['nombres']."'))";
                 $queryCte21= $database->query($query5);
-                $btnaedisig='<button class="btn btn-primary btn-block" name="edit" value="asignar1"> Editar Asignación </button>';
+                $btnaedisig='<button class="btn btn-primary btn-block" name="edit" value="asignar1"><span class="glyphicon glyphicon-edit"></span>  EDITAR ASIGNACIÓN </button>';
 
               }
               }else if($_POST['comp']!=0){
@@ -178,7 +180,7 @@
     . "AND `us`.`ACTIVO` = 1 \n"
     . "AND `sig`.`IDCATEDRATICO` = ".$_POST['comp']."\n";
                 $queryCte21= $database->query($query4);
-                $btnaedisig='<button class="btn  btn-success btn-block" name="edit" value="asignar1"> Editar Asignación </button>';
+                $btnaedisig='<button class="btn  btn-success btn-block" name="edit" value="asignar1"><span class="glyphicon glyphicon-edit"></span>  EDITAR ASIGNACIÓN </button>';
               }
               $var = 1;
 				    	while($registrosfiltrados  = $queryCte21->fetch_array( MYSQLI_BOTH))
@@ -192,7 +194,7 @@
                     <td> Q.'.$registrosfiltrados['VALOR'].'</td>
                     <td>'.$registrosfiltrados['CATNAME'].'</td>
                     <td>
-                    <button class="btn btn-info" data-toggle="modal" data-target="#edit-'.$registrosfiltrados['idA'].'">Ver Opciones</button>
+                    <button class="btn btn-info " data-toggle="modal" data-target="#edit-'.$registrosfiltrados['idA'].'"><span class="glyphicon glyphicon-plus"></span> Ver Opciones</button>
                     <div class="modal fade" id="edit-'.$registrosfiltrados['idA'].'" tabindex="-1" role="dialog"
       				    	aria-labelledby="editLabel-'.$registrosfiltrados['idA'].'">
                       <div class="modal-dialog" role="document">
@@ -203,16 +205,16 @@
                           </div>
                             <div class="modal-body form-group">
 
-                            <form class="form-vertical" method="POST" action="Pago.php">
+                            <form class="form-vertical" method="POST" action="http://www.centromusicalbase.com/sibase/prueba/construccion.html">
 
                               <input type="hidden" name="idalumno" value="'.$registrosfiltrados['idA'].'"/>
-                              <button class="btn btn-info btn-block" name="pagos" value="Pago">PAGO</button>
+                              <button class="btn btn-info btn-block" name="pagos" value="Pago"><span class="glyphicon glyphicon-credit-card"></span> PAGO</button>
                             </form>
-                            <form class="form-vertical" method="POST" action="historial.php">
+                            <form class="form-vertical" method="POST" action="fdhistorial.php">
 
                                   <input type="hidden" name="idalumno" value="'.$registrosfiltrados['idA'].'"/>
                                   <input type="hidden" name="idcurso" value="'.$registrosfiltrados['idC'].'"/>
-                                  <button class="btn btn-warning btn-block" name="historial" value="historial">HISTORIAL DE PAGO</button>
+                                  <button class="btn btn-warning btn-block" name="historial" value="1historial"><span class="glyphicon glyphicon-list-alt"></span> HISTORIAL DE PAGO</button>
                             </form>
                             <form class="form-vertical" method="POST" action="asignaciones.php">
 
@@ -225,6 +227,10 @@
                               <input type="hidden" name="idcurso"  value="'.$registrosfiltrados['idC'].'"/>
                               <input type="hidden" name="idcatedratico" value="'.$registrosfiltrados['idT'].'"/>
                               '.$btnaedisig.'
+                            </form>
+                            <form class="form-vertical" method="POST" action="listaAsignaciones.php">
+                                  <input type="hidden" name="idalumno" value="'.$registrosfiltrados['idA'].'"/>
+                                  <button class="btn btn-default btn-block" name="listar" value="listar"><span class="glyphicon glyphicon-list"></span> LISTA DE ASIGNACIONES</button>
                             </form>
                             </div>
                             <div class="modal-footer">

@@ -1,9 +1,9 @@
 <?php
 ////////////////// CONEXION A LA BASE DE DATOS //////////////////
- $dbserver = 'localhost';
- $dbuser = 'root';
- $password = '';
- $dbname = 'admaptec_jmln2';
+$dbserver = 'localhost';
+$dbuser = 'root';
+$password = '';
+$dbname = 'admaptec_jmln2';
 
  $database = new mysqli($dbserver, $dbuser, $password, $dbname);
 
@@ -28,7 +28,7 @@
   }
   else if($contrasena != $contra || $estado==0){
 
-    header('Location: fd_error_conexion.html');
+    header('Location: http://www.centromusicalbase.com/sibase/prueba/fd_error_conexion.html');
   }
   mysqli_close($database);
  }
@@ -154,7 +154,7 @@
     . "AND `us`.`ACTIVO` = 1 \n"
     . "AND `sig`.`IDCATEDRATICO` = ".$idCate."\n";
                 $queryCte21= $database->query($query4);
-                $btnaedisig='<button class="btn  btn-success btn-block" name="edit" value="asignar1"> Editar Asignación </button>';
+
                 if(!isset($_POST['nombres']) || $_POST['nombres']==""){
 
                 }else{
@@ -169,7 +169,7 @@
     . "AND ( UPPER(`us`.`nombre`) LIKE UPPER('%".$_POST['nombres']."%') \n"
     . "OR UPPER(`us`.`apellidos`) LIKE UPPER('%".$_POST['nombres']."'))";
                 $queryCte21= $database->query($query5);
-                $btnaedisig='<button class="btn btn-success btn-block" name="edit" value="asignar1"> Editar Asignación </button>';
+
 
               }
 
@@ -185,7 +185,7 @@
                     <td> Q.'.$registrosfiltrados['VALOR'].'</td>
                     <td>'.$registrosfiltrados['CATNAME'].'</td>
                     <td>
-                    <button class="btn btn-info" data-toggle="modal" data-target="#edit-'.$registrosfiltrados['idA'].'">Ver Opciones</button>
+                    <button class="btn btn-info" data-toggle="modal" data-target="#edit-'.$registrosfiltrados['idA'].'"><span class="glyphicon glyphicon-plus"></span> Ver Opciones</button>
                     <div class="modal fade" id="edit-'.$registrosfiltrados['idA'].'" tabindex="-1" role="dialog"
       				    	aria-labelledby="editLabel-'.$registrosfiltrados['idA'].'">
                       <div class="modal-dialog" role="document">
@@ -196,26 +196,16 @@
                           </div>
                             <div class="modal-body form-group">
 
-                            <form class="form-vertical" method="POST" action="Pago.php">
-                              <button class="btn btn-info btn-block" name="pagos" value="Pago">PAGO</button>
+                            <form class="form-vertical" method="POST" action="http://www.centromusicalbase.com/sibase/prueba/construccion.html">
+                              <button class="btn btn-info btn-block" name="pagos" value="Pago"><span class="glyphicon glyphicon-credit-card"></span> PAGO</button>
                               <input type="hidden" name="idAlum" value="'.$registrosfiltrados['idA'].'">
                             </form>
-                            <form class="form-vertical" method="POST" action="historial.php">
-                                  <button class="btn btn-warning btn-block" name="historial" value="historial">HISTORIAL DE PAGO</button>
+                            <form class="form-vertical" method="POST" action="fdhistorial.php">
+                                  <button class="btn btn-warning btn-block" name="historial" value="historial"><span class="glyphicon glyphicon-list-alt"></span> HISTORIAL DE PAGO</button>
                                   <input type="hidden" name="idalummp" value="'.$registrosfiltrados['idA'].'"/>
                                   <input type="hidden" name="idcurso" value="'.$registrosfiltrados['idC'].'"/>
                             </form>
-                            <form class="form-vertical" method="POST" action="asignaciones.php">
-                              '.$btnasignacion.'
-                                  <input type="hidden" name="idAlum" value"idAlum" value="'.$registrosfiltrados['idA'].'"/>
-                            </form>
-                            <form class="form-vertical" method="POST" action="asignaciones.php">
 
-                              <input type="hidden" name="idalumno" value="'.$registrosfiltrados['idA'].'"/>
-                              <input type="hidden" name="idcurso"  value="'.$registrosfiltrados['idC'].'"/>
-                              <input type="hidden" name="idcatedratico" value="'.$registrosfiltrados['idT'].'"/>
-                              '.$btnaedisig.'
-                            </form>
                             </div>
                             <div class="modal-footer">
       				    						<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
