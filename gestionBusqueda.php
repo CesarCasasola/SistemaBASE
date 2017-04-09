@@ -1,8 +1,13 @@
 <?php
 ////////////////// CONEXION A LA BASE DE DATOS //////////////////
-$dbserver = 'localhost';
+/*$dbserver = 'localhost';
 $dbuser = 'root';
 $password = '';
+$dbname = 'admaptec_jmln2';*/
+
+$dbserver = 'localhost';
+$dbuser = 'admaptec_sibaseb';
+$password = 'SIbase2017';
 $dbname = 'admaptec_jmln2';
 
 
@@ -152,7 +157,7 @@ $dbname = 'admaptec_jmln2';
     . "WHERE `sig`.`IDALUMNO` = `us`.`idalumno`\n"
     . "AND `sig`.`IDCURSO` = `c`.`idcurso`\n"
     . "AND `sig`.`IDCATEDRATICO` = `da`.`idcatedratico`\n"
-    . "AND `us`.`ACTIVO` = 1";
+    . "AND `us`.`ACTIVO` = 1 AND `c`.`activo` = 1 ";
                 $queryCte21= $database->query($query3);
                 $btnasignacion='<button class="btn  btn-success btn-block" name="insertar" value="asignar"><span class="glyphicon glyphicon-pencil"></span> ASIGNAR </button>';
                 if(!isset($_POST['nombres']) || $_POST['nombres']==""){
@@ -164,7 +169,7 @@ $dbname = 'admaptec_jmln2';
     . "WHERE `sig`.`IDALUMNO` = `us`.`idalumno`\n"
     . "AND `sig`.`IDCURSO` = `c`.`idcurso`\n"
     . "AND `sig`.`IDCATEDRATICO` = `da`.`idcatedratico`\n"
-    . "AND `us`.`ACTIVO` = 1 \n"
+    . "AND `us`.`ACTIVO` = 1 AND `c`.`activo` = 1 \n"
     . "AND ( UPPER(`us`.`nombre`) LIKE UPPER('%".$_POST['nombres']."%') \n"
     . "OR UPPER(`us`.`apellidos`) LIKE UPPER('%".$_POST['nombres']."'))";
                 $queryCte21= $database->query($query5);
@@ -177,7 +182,7 @@ $dbname = 'admaptec_jmln2';
     . "WHERE `sig`.`IDALUMNO` = `us`.`idalumno`\n"
     . "AND `sig`.`IDCURSO` = `c`.`idcurso`\n"
     . "AND `sig`.`IDCATEDRATICO` = `da`.`idcatedratico`\n"
-    . "AND `us`.`ACTIVO` = 1 \n"
+    . "AND `us`.`ACTIVO` = 1  AND `c`.`activo` = 1\n"
     . "AND `sig`.`IDCATEDRATICO` = ".$_POST['comp']."\n";
                 $queryCte21= $database->query($query4);
                 $btnaedisig='<button class="btn  btn-success btn-block" name="edit" value="asignar1"><span class="glyphicon glyphicon-edit"></span>  EDITAR ASIGNACIÓN </button>';
@@ -205,7 +210,7 @@ $dbname = 'admaptec_jmln2';
                           </div>
                             <div class="modal-body form-group">
 
-                            <form class="form-vertical" method="POST" action="http://www.centromusicalbase.com/sibase/prueba/construccion.html">
+                            <form class="form-vertical" method="POST" action="pago.php">
 
                               <input type="hidden" name="idalumno" value="'.$registrosfiltrados['idA'].'"/>
                               <button class="btn btn-info btn-block" name="pagos" value="Pago"><span class="glyphicon glyphicon-credit-card"></span> PAGO</button>

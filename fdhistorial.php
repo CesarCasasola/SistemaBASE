@@ -1,8 +1,13 @@
 <?php
 ////////////////// CONEXION A LA BASE DE DATOS //////////////////
-$dbserver = 'localhost';
+/*$dbserver = 'localhost';
 $dbuser = 'root';
 $password = '';
+$dbname = 'admaptec_jmln2';*/
+
+$dbserver = 'localhost';
+$dbuser = 'admaptec_sibaseb';
+$password = 'SIbase2017';
 $dbname = 'admaptec_jmln2';
 
 

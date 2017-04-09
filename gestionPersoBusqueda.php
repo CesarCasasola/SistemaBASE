@@ -1,8 +1,13 @@
 <?php
 ////////////////// CONEXION A LA BASE DE DATOS //////////////////
-$dbserver = 'localhost';
+/*$dbserver = 'localhost';
 $dbuser = 'root';
 $password = '';
+$dbname = 'admaptec_jmln2';*/
+
+$dbserver = 'localhost';
+$dbuser = 'admaptec_sibaseb';
+$password = 'SIbase2017';
 $dbname = 'admaptec_jmln2';
 
  $database = new mysqli($dbserver, $dbuser, $password, $dbname);
@@ -151,7 +156,7 @@ $dbname = 'admaptec_jmln2';
     . "WHERE `sig`.`IDALUMNO` = `us`.`idalumno`\n"
     . "AND `sig`.`IDCURSO` = `c`.`idcurso`\n"
     . "AND `sig`.`IDCATEDRATICO` = `da`.`idcatedratico`\n"
-    . "AND `us`.`ACTIVO` = 1 \n"
+    . "AND `us`.`ACTIVO` = 1 AND `c`.`activo` = 1\n"
     . "AND `sig`.`IDCATEDRATICO` = ".$idCate."\n";
                 $queryCte21= $database->query($query4);
 
@@ -164,7 +169,7 @@ $dbname = 'admaptec_jmln2';
     . "WHERE `sig`.`IDALUMNO` = `us`.`idalumno`\n"
     . "AND `sig`.`IDCURSO` = `c`.`idcurso`\n"
     . "AND `sig`.`IDCATEDRATICO` = `da`.`idcatedratico`\n"
-    . "AND `us`.`ACTIVO` = 1 \n"
+    . "AND `us`.`ACTIVO` = 1  AND `c`.`activo` = 1 \n"
     . "AND `sig`.`IDCATEDRATICO` = ".$idCate."\n"
     . "AND ( UPPER(`us`.`nombre`) LIKE UPPER('%".$_POST['nombres']."%') \n"
     . "OR UPPER(`us`.`apellidos`) LIKE UPPER('%".$_POST['nombres']."'))";
@@ -196,9 +201,9 @@ $dbname = 'admaptec_jmln2';
                           </div>
                             <div class="modal-body form-group">
 
-                            <form class="form-vertical" method="POST" action="http://www.centromusicalbase.com/sibase/prueba/construccion.html">
+                            <form class="form-vertical" method="POST" action="pago.php">
                               <button class="btn btn-info btn-block" name="pagos" value="Pago"><span class="glyphicon glyphicon-credit-card"></span> PAGO</button>
-                              <input type="hidden" name="idAlum" value="'.$registrosfiltrados['idA'].'">
+                              <input type="hidden" name="idalumno" value="'.$registrosfiltrados['idA'].'">
                             </form>
                             <form class="form-vertical" method="POST" action="fdhistorial.php">
                                   <button class="btn btn-warning btn-block" name="historial" value="historial"><span class="glyphicon glyphicon-list-alt"></span> HISTORIAL DE PAGO</button>
