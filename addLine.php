@@ -1,9 +1,9 @@
 <?php
 ////////////////// CONEXION A LA BASE DE DATOS //////////////////
- $dbserver = '127.0.0.1';
- $dbuser = 'root';
- $password = 'dbn0w';
- $dbname = 'admaptec_jmln2';
+  $dbserver = "localhost";
+  $dbuser = "admaptec_sibaseb";
+  $password = "SIbase2017";
+  $dbname = "admaptec_jmln2";
  
  //para mantener la correspondencia codigo mes, el bucket 0 no tiene datos
  $meses = array("", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
@@ -159,4 +159,5 @@
         }else{
         	echo '<script>alert("El número de recibo que intenta usar ya existe.");</script>';
         }
+        mysqli_close($database);
 ?>
